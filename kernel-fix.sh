@@ -53,6 +53,7 @@ else
   fi
 fi
 
+exit 0
 
 # /boot-native
 #mountpoint /boot-vbox/; echo $?

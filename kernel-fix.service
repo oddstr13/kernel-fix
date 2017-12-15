@@ -1,0 +1,12 @@
+[Unit]
+Description=Check wether kernel is up to date with kernel modules
+
+[Service]
+Type=oneshot
+ExecStart={MYPATH}/kernel-fix-systemd.sh
+FailureAction=reboot
+
+[Install]
+RequiredBy=graphical.target
+WantedBy=multi-user.target
+Wants=local-fs.target
