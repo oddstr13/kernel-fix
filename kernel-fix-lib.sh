@@ -19,23 +19,28 @@ function kernel_fix_needed {
     fi
 }
 
-function print_kernel_info {
-    echo "Currently running kernel: ${KERNEL}"
-    echo "Package file is: ${KPKGFILE}"
-    echo "Module directory is: ${KMODDIR}"
-
-    if kernel_fix_needed; then
-        echo -e "${RED}Fix needed!${RESET}"
-    else
-        echo -e "${GREEN}No fix needed.${RESET}"
-    fi
-}
-
 function is_virtualbox {
     if [[ "$(systemd-detect-virt)" == "oracle" ]]; then
         return 0
     else
         return 1
+    fi
+}
+
+function print_kernel_info {
+    echo "Currently running kernel: ${KERNEL}"
+    echo "Package file is: ${KPKGFILE}"
+    echo "Module directory is: ${KMODDIR}"
+    if is_virtualbox; then
+        echo "System detects as VirtualBox."
+    else
+        echo "System detects as native."
+    fi
+
+    if kernel_fix_needed; then
+        echo -e "${RED}Fix needed!${RESET}"
+    else
+        echo -e "${GREEN}No fix needed.${RESET}"
     fi
 }
 
