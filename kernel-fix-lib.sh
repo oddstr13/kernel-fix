@@ -32,7 +32,7 @@ function print_kernel_info {
 }
 
 function is_virtualbox {
-    if [[ "$(systemd-detect-virt)" -eq "oracle" ]]; then
+    if [[ "$(systemd-detect-virt)" == "oracle" ]]; then
         return 0
     else
         return 1
